@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Til va Adabiyot{% endblock %}
+
+{% block content %}
+<h4>Jurnallar</h4>
+<div class="row">
+    {% for book in books %}
+    <div class="col-4">
+        <div class="d-flex justify-content-center">
+            <img src="{{ book.image.url }}" class="img-fluid rounded" alt="Kitob rasmi">
+        </div>
+        <h5 class="mt-3">{{ book.title }}</h5>
+        <a class="d-block text-decoration-none btn btn-outline-success my-3" href="{% url 'file' book.pk %}">Ko'rish</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

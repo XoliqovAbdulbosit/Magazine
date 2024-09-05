@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ file.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-3 d-flex justify-content-center">
+        <img src="{{ file.image.url }}" class="img-fluid rounded" alt="File">
+    </div>
+    <div class="col-9">
+        <h2>{{ file.title }}</h2>
+        <p>{{ file.price }} so'm</p>
+        <a class="text-decoration-none btn btn-outline-success my-1" href="{{ file.file.url }}">Ko'rish</a>
+    </div>
+</div>
+{% endblock %}
