@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page }}{% endblock %}
+
+{% block content %}
+<h4>{{ page }}</h4>
+<div class="dropdown my-4">
+    <a class="btn btn-outline-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Saralash
+    </a>
+
+    <ul class="dropdown-menu">
+        {% url 'page' page as page_url %}
+        <li><a class="dropdown-item" href="{{ page_url }}?query=views_desc">Ko'rishlar soni bo'yicha (pasayish)</a></li>
+        <li><a class="dropdown-item" href="{{ page_url }}?query=views_asc">Ko'rishlar soni bo'yicha (o'sish)</a></li>
+        <li><a class="dropdown-item" href="{{ page_url }}?query=date_desc">Sana bo'yicha (yangilari)</a></li>
+        <li><a class="dropdown-item" href="{{ page_url }}?query=date_asc">Sana bo'yicha (eskilari)</a></li>
+    </ul>
+</div>
+<div class="row">
+    {% for book in books %}
+    <div class="col-4">
+        <div class="d-flex justify-content-center">
+            <img src="{{ book.image.url }}" class="img-fluid rounded" alt="Kitob rasmi">
+        </div>
+        <h5 class="mt-3">{{ book.title }}</h5>
+        <p class="mb-0"><i class="bi bi-eye-fill"></i> {{ book.views }}</p>
+        <p class="mb-0"><i class="bi bi-calendar3"></i> {{ book.date|date:"d/m/Y" }}</p>
+        <a class="d-block text-decoration-none btn btn-outline-success my-3" href="{% url 'file' book.pk %}">Ko'rish</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

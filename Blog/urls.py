@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main, name='home'),
     path('file/<int:pk>', views.file, name='file'),
+    path('page/<page>', views.page, name='page'),
+    path('talab', views.talab, name='talab'),
     path('signin/', views.signin, name='signin'),
     path('signup/', views.signup, name='signup'),
     path('signout/', views.signout, name='signout'),

@@ -14,7 +14,9 @@ class File(models.Model):
     title = models.CharField(max_length=128)
     image = models.ImageField()
     file = models.FileField()
-    price = models.IntegerField()
+    views = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now=True)
+    price = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

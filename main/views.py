@@ -1,18 +1,39 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .models import File
+from .models import File, Category
 
 
 # Create your views here.
 def main(request):
-    books = File.objects.all()
+    books = File.objects.filter(category=Category.objects.get(title='jurnallar'))
     return render(request, 'home.html', {'books': books})
 
 
 def file(request, pk):
     file = File.objects.get(pk=pk)
+    file.views += 1
+    file.save()
     return render(request, 'file.html', {'file': file})
+
+
+def page(request, page):
+    books = File.objects.filter(category=Category.objects.get(title=page.lower()))
+    query = request.GET.get('query', None)
+    if query is not None:
+        if query == 'views_asc':
+            books = books.order_by('views')
+        elif query == 'views_desc':
+            books = books.order_by('-views')
+        elif query == 'date_asc':
+            books = books.order_by('date')
+        elif query == 'date_desc':
+            books = books.order_by('-date')
+    return render(request, 'page.html', {'books': books, 'page': page.capitalize()})
+
+
+def talab(request):
+    return render(request, 'talab.html')
 
 
 def signin(request):
