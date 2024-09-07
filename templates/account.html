@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+<h3>O'qilgan fayllar</h3>
+{% for item in history %}
+<p class="fw-bold mb-0">{{ item.file.title }}</p>
+<p class="mb-0">{{ item.date|date:"d/m/Y" }}</p>
+<a class="text-decoration-none btn btn-outline-success my-3" href="{% url 'file' item.file.pk %}">Ko'rish</a>
+{% endfor %}
+{% endblock %}

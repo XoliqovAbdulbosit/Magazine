@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .models import File, Category
+from .models import File, Category, History
 
 
 # Create your views here.
@@ -14,6 +14,8 @@ def file(request, pk):
     file = File.objects.get(pk=pk)
     file.views += 1
     file.save()
+    if request.user.is_authenticated:
+        History.objects.create(user=request.user, file=file).save()
     return render(request, 'file.html', {'file': file})
 
 
@@ -34,6 +36,15 @@ def page(request, page):
 
 def talab(request):
     return render(request, 'talab.html')
+
+
+def account(request):
+    history = History.objects.filter(user=request.user)
+    return render(request, 'account.html', {'history': history})
+
+
+def about(request):
+    return render(request, 'about.html')
 
 
 def signin(request):

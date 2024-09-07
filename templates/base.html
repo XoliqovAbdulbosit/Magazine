@@ -15,10 +15,9 @@
 
             <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'home' %}">Bosh Sahifa</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'home' %}">Tahririyat</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'home' %}">Tahririyat haqida</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'about' %}">Tahririyat haqida</a>
                 {% if user.is_authenticated %}
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'home' %}">Akkaunt</a>
+                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'account' %}">Akkaunt</a>
                 <form class="d-inline" action="{% url 'signout' %}" method="post">
                     {% csrf_token %}
                     <button class="btn btn-outline-danger me-2" type="submit">Chiqish</button>
