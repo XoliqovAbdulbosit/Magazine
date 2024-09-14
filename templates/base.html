@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,10 +30,10 @@
             </nav>
         </div>
         <div class="row my-4">
-            <div class="col-auto">
-                <img src="https://tilvaadabiyot.uz/thumb/2/vBTAoGNF6ThGXF3_RswG0Q/200r200/d/logotip.png" alt="">
+            <div class="col-12 col-md-2">
+                <img class="img-fluid rounded-pill" src="{% static 'logo.png' %}" alt="">
             </div>
-            <div class="col-auto">
+            <div class="col-auto d-flex flex-column justify-content-center">
                 <h2>Til va adabiyot ta'limi</h2>
                 <h2>Преподавание языка и литературы</h2>
                 <p>ilmiy-metodik jurnal / научно-методический журнал</p>
